@@ -1,0 +1,23 @@
+version: '3.4'
+
+services:
+
+  micros.services.products:
+    image: micros/services-products
+    build:
+      context: . 
+      dockerfile: ./src/micros.services.products/Dockerfile
+    container_name: products
+
+  micros.gateway:
+    image: micros/gateway
+    build:
+      context: .
+      dockerfile: ./src/micros.gateway/Dockerfile
+    container_name: services-gateway
+
+  consul:
+    image: consul:latest
+    command: consul agent -dev -log-level=warn -ui -client=0.0.0.0
+    hostname: consul
+    container_name : consul

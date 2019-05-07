@@ -1,0 +1,21 @@
+version: '3.4'
+
+services:
+  micros.services.products:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ServiceConfig__serviceDiscoveryAddress=http://consul:8500
+      - ServiceConfig__serviceAddress=http://products:80
+      - ServiceConfig__serviceName=products
+      - ServiceConfig__serviceId=products-v1
+    ports:
+      - "8080:80"
+
+    
+  micros.gateway:
+    ports:
+      - "8081:80"
+
+  consul:
+    ports:
+    - "8500"
