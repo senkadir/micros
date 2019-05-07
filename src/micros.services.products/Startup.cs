@@ -19,7 +19,9 @@ namespace micros.services.products
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            RegisterServiceToDiscovery(services);
+            services.RegisterConsulServices(Configuration.GetSection("ServiceConfig").Get<ServiceConfig>());
+
+            //services.RegisterConsulServices(Configuration.GetServiceConfig());
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
@@ -33,11 +35,6 @@ namespace micros.services.products
             }
 
             app.UseMvc();
-        }
-
-        private void RegisterServiceToDiscovery(IServiceCollection services)
-        {
-            services.RegisterConsulServices(Configuration.GetServiceConfig());
         }
     }
 }

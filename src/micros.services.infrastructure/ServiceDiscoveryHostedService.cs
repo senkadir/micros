@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using Consul;
 using Microsoft.Extensions.Hosting;
@@ -26,7 +27,12 @@ namespace micros.services.infrastructure
                 ID = _registrationId,
                 Name = _config.ServiceName,
                 Address = _config.ServiceAddress.Host,
-                Port = _config.ServiceAddress.Port
+                Port = _config.ServiceAddress.Port,
+                Check = new AgentServiceCheck
+                {
+                    HTTP = $"{_config.ServiceAddress.AbsoluteUri}api/health",
+                    Interval = TimeSpan.FromSeconds(_config.HealthCheckInterval)
+                }
             };
 
             await _client.Agent.ServiceDeregister(registration.ID, cancellationToken);

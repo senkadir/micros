@@ -1,21 +1,17 @@
 {
-  "ReRoutes": [
-    {
-      "DownstreamPathTemplate": "/api/products",
-      "DownstreamScheme": "http",
-      "ServiceName": "products",
-      "UpstreamPathTemplate": "/products/",
-      "UpstreamHttpMethod": [ "Get" ]
-    }
-  ],
-  "Aggregates": [
-  ],
-
+  "ReRoutes": [],
+  "Aggregates": [],
   "GlobalConfiguration": {
     "ServiceDiscoveryProvider": {
       "Host": "consul",
       "Port": 8500,
       "Type": "Consul"
+    },
+    "DownstreamScheme": "http",
+    "HttpHandlerOptions": {
+      "AllowAutoRedirect": false,
+      "UseCookieContainer": false,
+      "UseTracing": false
     }
   }
 
