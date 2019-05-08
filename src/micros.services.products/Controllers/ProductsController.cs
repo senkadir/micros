@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Net;
 
 namespace micros.services.products.Controllers
 {
@@ -18,7 +19,7 @@ namespace micros.services.products.Controllers
         [HttpGet("{id}", Name = "Get")]
         public string Get(int id)
         {
-            return $"Product {id}";
+            return $"Container name: {Dns.GetHostName()}";
         }
     }
 }

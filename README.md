@@ -2,7 +2,6 @@
 
 Microservices demo with docker
 
-Base address localhost
-Base port: 10000
+Gateway: http://localhost:8081/
 
-Base path: localhost:10000
+For service discovery: https://ocelot.readthedocs.io/en/latest/features/servicediscovery.html#dynamic-routing
